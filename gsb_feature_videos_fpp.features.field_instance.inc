@@ -109,14 +109,13 @@ function gsb_feature_videos_fpp_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 1,
+      'weight' => 2,
     ),
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance:
-  // 'field_collection_item-field_video-field_link_single'
-  $field_instances['field_collection_item-field_video-field_link_single'] = array(
+  // Exported field_instance: 'field_collection_item-field_video-field_title'
+  $field_instances['field_collection_item-field_video-field_title'] = array(
     'bundle' => 'field_video',
     'custom_add_another' => '',
     'custom_remove' => '',
@@ -126,61 +125,101 @@ function gsb_feature_videos_fpp_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'link',
+        'module' => 'text',
         'settings' => array(
           'conditions' => array(),
         ),
-        'type' => 'link_default',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 3,
       ),
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'field_collection_item',
-    'field_name' => 'field_link_single',
-    'label' => 'Video URL',
+    'field_name' => 'field_title',
+    'label' => 'Video Title',
     'required' => 0,
     'settings' => array(
-      'absolute_url' => 1,
-      'attributes' => array(
-        'class' => '',
-        'configurable_class' => 0,
-        'configurable_title' => 0,
-        'rel' => '',
-        'target' => 'default',
-        'title' => '',
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'act' => 'act',
+          'full_html' => 'full_html',
+          'gsb_html_text' => 'gsb_html_text',
+          'gsb_wysiwyg_text' => 'gsb_wysiwyg_text',
+          'image_resource_caption' => 'image_resource_caption',
+          'image_text_equivalent' => 'image_text_equivalent',
+          'markdown' => 'markdown',
+          'markdown_lite_minus_resources' => 'markdown_lite_minus_resources',
+          'plain_text' => 'plain_text',
+          'sidebar' => 'sidebar',
+          'slideshow' => 'slideshow',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'act' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'gsb_html_text' => array(
+              'weight' => -9,
+            ),
+            'gsb_wysiwyg_text' => array(
+              'weight' => -10,
+            ),
+            'image_resource_caption' => array(
+              'weight' => 0,
+            ),
+            'image_text_equivalent' => array(
+              'weight' => 0,
+            ),
+            'markdown' => array(
+              'weight' => 0,
+            ),
+            'markdown_lite_minus_resources' => array(
+              'weight' => 0,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+            'sidebar' => array(
+              'weight' => 0,
+            ),
+            'slideshow' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
       ),
       'custom_add_another' => '',
       'custom_remove' => '',
-      'display' => array(
-        'url_cutoff' => 80,
-      ),
-      'enable_tokens' => 1,
       'linkit' => array(
         'enable' => 0,
         'insert_plugin' => '',
       ),
-      'rel_remove' => 'default',
-      'title' => 'optional',
-      'title_label_use_field_label' => 0,
-      'title_maxlength' => 128,
-      'title_value' => '',
-      'url' => 0,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
-      'validate_url' => 1,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'link',
-      'settings' => array(),
-      'type' => 'link_field',
-      'weight' => 0,
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
     ),
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-videos-field_link_single'
-  $field_instances['fieldable_panels_pane-videos-field_link_single'] = array(
-    'bundle' => 'videos',
+  // Exported field_instance:
+  // 'field_collection_item-field_video-field_video_url'
+  $field_instances['field_collection_item-field_video-field_video_url'] = array(
+    'bundle' => 'field_video',
     'custom_add_another' => '',
     'custom_remove' => '',
     'default_value' => NULL,
@@ -189,54 +228,39 @@ function gsb_feature_videos_fpp_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'link',
+        'module' => 'video_embed_field',
         'settings' => array(
           'conditions' => array(),
+          'description' => 1,
+          'description_position' => 'bottom',
+          'video_style' => 'normal',
         ),
-        'type' => 'link_default',
-        'weight' => 0,
+        'type' => 'video_embed_field',
+        'weight' => 2,
       ),
     ),
     'ds_extras_field_template' => '',
-    'entity_type' => 'fieldable_panels_pane',
-    'field_name' => 'field_link_single',
-    'label' => 'Block Title',
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_video_url',
+    'label' => 'Video URL',
     'required' => 0,
     'settings' => array(
-      'absolute_url' => 1,
-      'attributes' => array(
-        'class' => '',
-        'configurable_class' => 0,
-        'configurable_title' => 0,
-        'rel' => '',
-        'target' => 'user',
-        'title' => '',
+      'allowed_providers' => array(
+        'vimeo' => 'vimeo',
+        'youtube' => 'youtube',
       ),
       'custom_add_another' => '',
       'custom_remove' => '',
-      'display' => array(
-        'url_cutoff' => 80,
-      ),
-      'enable_tokens' => 1,
-      'linkit' => array(
-        'enable' => 0,
-        'insert_plugin' => '',
-      ),
-      'rel_remove' => 'default',
-      'title' => 'optional',
-      'title_label_use_field_label' => 0,
-      'title_maxlength' => 60,
-      'title_value' => '',
-      'url' => 0,
+      'description_field' => 0,
+      'description_length' => 128,
       'user_register_form' => FALSE,
-      'validate_url' => 1,
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'link',
+      'module' => 'video_embed_field',
       'settings' => array(),
-      'type' => 'link_field',
-      'weight' => 1,
+      'type' => 'video_embed_field_video',
+      'weight' => 0,
     ),
     'workbench_access_field' => 0,
   );
@@ -287,8 +311,8 @@ function gsb_feature_videos_fpp_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Block Title');
   t('Video');
+  t('Video Title');
   t('Video URL');
   t('Video description');
 
