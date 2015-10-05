@@ -6,4 +6,12 @@
 
 include_once 'gsb_feature_videos_fpp.features.inc';
 
-
+/**
+ * Implements hook_form_alter().
+ */
+function gsb_feature_videos_fpp_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#bundle'] == 'videos' && $form['#form_id'] == 'fieldable_panels_panes_entity_edit_form') {
+    $form['title']['#access'] = FALSE;
+    $form['link']['#access'] = FALSE;
+   }
+}
