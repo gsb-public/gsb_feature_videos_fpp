@@ -8,6 +8,7 @@ dependencies[] = features
 dependencies[] = field_collection
 dependencies[] = fieldable_panels_panes
 dependencies[] = gsb_feature_base_fields
+dependencies[] = gsb_field_formatter
 dependencies[] = link
 dependencies[] = strongarm
 dependencies[] = text

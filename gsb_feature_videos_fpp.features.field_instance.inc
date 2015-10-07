@@ -228,14 +228,13 @@ function gsb_feature_videos_fpp_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'video_embed_field',
+        'module' => 'gsb_field_formatter',
         'settings' => array(
           'conditions' => array(),
-          'description' => 1,
-          'description_position' => 'bottom',
-          'video_style' => 'normal',
+          'file_view_mode' => 'default',
+          'image_style' => '270x158_video',
         ),
-        'type' => 'video_embed_field',
+        'type' => 'gsb_field_formatter_video_lightbox',
         'weight' => 2,
       ),
     ),
