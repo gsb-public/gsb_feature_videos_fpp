@@ -15,3 +15,140 @@ function gsb_feature_videos_fpp_form_alter(&$form, &$form_state, $form_id) {
     $form['link']['#access'] = FALSE;
    }
 }
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function gsb_feature_videos_fpp_field_extra_fields() {
+  $extra['field_collection_item']['field_video']['display']['gsb_feature_videos_fpp_video_duration'] = array(
+    'label' => t('Video Duration'),
+    'description' => t('The duration in hh:mm:ss'),
+    'weight' => 1,
+  );
+  $extra['field_collection_item']['field_video']['display']['gsb_feature_videos_fpp_video_channel_title'] = array(
+    'label' => t('Video Channel Title'),
+    'description' => t('The channel title for the video'),
+    'weight' => 1,
+  );
+  $extra['field_collection_item']['field_video']['display']['gsb_feature_videos_fpp_video_viewcount'] = array(
+    'label' => t('Video View Count'),
+    'description' => t('The number of times the video has been viewed'),
+    'weight' => 1,
+  );
+  return $extra;
+}
+
+/**
+ * Implements hook_entity_view().
+ *
+ *  - Render the Video Duration, View Count and Channel Title
+ */
+function gsb_feature_videos_fpp_entity_view($entity, $type, $view_mode, $langcode) {
+  if ($type == 'field_collection_item' && $entity->field_name == 'field_video') {
+    $video_url = $entity->field_video_url['und'][0]['video_url'];
+    $video_id = _gsb_feature_videos_fpp_get_video_id($video_url);
+    // Render View View Count
+    $data = _gsb_field_formatter_get_video_statistics($video_id);
+    if ($data) {
+      $data = drupal_json_decode($data);
+      if (!empty($data['items'][0]['statistics']['viewCount'])) {
+        $entity->content['gsb_feature_videos_fpp_video_viewcount'] = array(
+          '#markup' => t('<div class="""video-viewcount">'.$data['items'][0]['statistics']['viewCount'].'</div>'),
+        );
+      }
+    }
+    // Render Video Duration
+    $data = _gsb_field_formatter_get_video_contentdetails($video_id);
+    if ($data) {
+      $data = drupal_json_decode($data);
+      if (!empty($data['items'][0]['contentDetails']['duration'])) {
+        $duration = $data['items'][0]['contentDetails']['duration'];
+        $duration = _gsb_feature_videos_fpp_convert_time($duration);
+        $entity->content['gsb_feature_videos_fpp_video_duration'] = array(
+          '#markup' => t('<div class="video-duration">'.$duration.'</div>'),
+        );
+      }
+    }
+    // Render Video Channel Title
+    $data =_gsb_field_formatter_get_video_snippet($video_id);
+    if ($data) {
+      $data = drupal_json_decode($data);
+      if (!empty($data['items'][0]['snippet']['channelTitle'])) {
+        $entity->content['gsb_feature_videos_fpp_video_channel_title'] = array(
+          '#markup' => t('<div class="video-channeltitle">'.$data['items'][0]['snippet']['channelTitle'].'</div>'),
+        );
+      }
+    }
+  }
+}
+
+/**
+ * Call Google to get video snippet info for the video: $video_id
+ */
+function _gsb_feature_videos_fpp_get_video_snippet($video_id) {
+  $google_browser_api_key = variable_get('video_embed_field_youtube_v3_api_key', '');
+  $google_api_url = 'https://www.googleapis.com/youtube/v3/videos?';
+  $data = null;
+  $result = drupal_http_request($google_api_url . 'part=snippet' . '&key=' . $google_browser_api_key .'&id=' . $video_id);
+  if ($result->code == 200) {
+    $data = $result->data;
+  }
+  return $data;
+}
+
+/**
+ * Call Google to get video statistics for the video: $video_id
+ */
+function _gsb_feature_videos_fpp_get_video_statistics($video_id) {
+  $google_browser_api_key = variable_get('video_embed_field_youtube_v3_api_key', '');
+  $google_api_url = 'https://www.googleapis.com/youtube/v3/videos?';
+  $data = null;
+  $result = drupal_http_request($google_api_url . 'part=statistics' . '&key=' . $google_browser_api_key .'&id=' . $video_id);
+  if ($result->code == 200) {
+    $data = $result->data;
+  }
+  return $data;
+}
+
+/**
+ * Call Google to get video statistics for the video: $video_id
+ */
+function _gsb_feature_videos_fpp_get_video_contentdetails($video_id) {
+  $google_browser_api_key = variable_get('video_embed_field_youtube_v3_api_key', '');
+  $google_api_url = 'https://www.googleapis.com/youtube/v3/videos?';
+  $data = null;
+  $result = drupal_http_request($google_api_url . 'part=contentDetails' . '&key=' . $google_browser_api_key .'&id=' . $video_id);
+  if ($result->code == 200) {
+    $data = $result->data;
+  }
+  return $data;
+}
+
+/**
+ * Get the video id from the video url.
+ */
+function _gsb_feature_videos_fpp_get_video_id($video_url) {
+  $video_parts = drupal_parse_url($video_url);
+  $video_id = '';
+  if (!empty($video_parts['query']['v'])) {
+    $video_id = $video_parts['query']['v'];
+  }
+  return $video_id;
+}
+
+function _gsb_feature_videos_fpp_convert_time($duration) {
+  preg_match_all('/(\d+)/',$duration,$parts);
+  $hours = $parts[0][0];
+  $minutes = $parts[0][1];
+  $seconds = 0;
+  if (!empty($parts[0][2])) {
+    $seconds = $parts[0][2];
+  }
+  if ($seconds != 0) {
+    return $hours.':'.$minutes.':'.$seconds;
+  }
+  else {
+    return $hours.':'.$minutes;
+  }
+}
+
