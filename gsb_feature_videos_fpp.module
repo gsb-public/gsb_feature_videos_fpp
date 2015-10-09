@@ -48,7 +48,7 @@ function gsb_feature_videos_fpp_entity_view($entity, $type, $view_mode, $langcod
     $video_url = $entity->field_video_url['und'][0]['video_url'];
     $video_id = _gsb_feature_videos_fpp_get_video_id($video_url);
     // Render View View Count
-    $data = _gsb_field_formatter_get_video_statistics($video_id);
+    $data = _gsb_feature_videos_fpp_get_video_statistics($video_id);
     if ($data) {
       $data = drupal_json_decode($data);
       if (!empty($data['items'][0]['statistics']['viewCount'])) {
@@ -58,7 +58,7 @@ function gsb_feature_videos_fpp_entity_view($entity, $type, $view_mode, $langcod
       }
     }
     // Render Video Duration
-    $data = _gsb_field_formatter_get_video_contentdetails($video_id);
+    $data = _gsb_feature_videos_fpp_get_video_contentdetails($video_id);
     if ($data) {
       $data = drupal_json_decode($data);
       if (!empty($data['items'][0]['contentDetails']['duration'])) {
@@ -70,7 +70,7 @@ function gsb_feature_videos_fpp_entity_view($entity, $type, $view_mode, $langcod
       }
     }
     // Render Video Channel Title
-    $data =_gsb_field_formatter_get_video_snippet($video_id);
+    $data =_gsb_feature_videos_fpp_get_video_snippet($video_id);
     if ($data) {
       $data = drupal_json_decode($data);
       if (!empty($data['items'][0]['snippet']['channelTitle'])) {
