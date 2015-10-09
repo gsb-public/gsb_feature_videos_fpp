@@ -119,29 +119,35 @@ function gsb_feature_videos_fpp_ds_layout_settings_info() {
   $ds_layout->view_mode = 'default';
   $ds_layout->layout = 'ds_1col';
   $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'group_wrapper_video',
+        1 => 'field_video_url',
+        2 => 'gsb_feature_videos_fpp_video_duration',
+        3 => 'field_title',
+        4 => 'gsb_feature_videos_fpp_video_channel_title',
+        5 => 'gsb_feature_videos_fpp_video_viewcount',
+        6 => 'field_body',
+      ),
+    ),
+    'fields' => array(
+      'group_wrapper_video' => 'ds_content',
+      'field_video_url' => 'ds_content',
+      'gsb_feature_videos_fpp_video_duration' => 'ds_content',
+      'field_title' => 'ds_content',
+      'gsb_feature_videos_fpp_video_channel_title' => 'ds_content',
+      'gsb_feature_videos_fpp_video_viewcount' => 'ds_content',
+      'field_body' => 'ds_content',
+    ),
     'classes' => array(),
     'wrappers' => array(
-      'left' => 'div',
-      'right' => 'div',
+      'ds_content' => 'div',
     ),
     'layout_wrapper' => 'div',
     'layout_attributes' => '',
     'layout_attributes_merge' => 1,
     'layout_link_attribute' => '',
     'layout_link_custom' => '',
-    'layout_disable_css' => FALSE,
-    'regions' => array(
-      'ds_content' => array(
-        0 => 'field_video_url',
-        1 => 'field_title',
-        2 => 'field_body',
-      ),
-    ),
-    'fields' => array(
-      'field_video_url' => 'ds_content',
-      'field_title' => 'ds_content',
-      'field_body' => 'ds_content',
-    ),
   );
   $export['field_collection_item|field_video|default'] = $ds_layout;
 
