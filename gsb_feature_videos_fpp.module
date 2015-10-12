@@ -148,9 +148,11 @@ function _gsb_feature_videos_fpp_convert_time($duration) {
     $seconds = $parts[0][2];
   }
   if ($seconds != 0) {
+    $seconds = sprintf('%02d', $seconds);
     return $hours.':'.$minutes.':'.$seconds;
   }
   else {
+    $minutes = sprintf('%02d', $minutes);
     return $hours.':'.$minutes;
   }
 }
