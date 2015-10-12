@@ -80,8 +80,9 @@ function gsb_feature_videos_fpp_entity_view($entity, $type, $view_mode, $langcod
     if ($data) {
       $data = drupal_json_decode($data);
       if (!empty($data['items'][0]['statistics']['viewCount'])) {
+        $viewCount = number_format($data['items'][0]['statistics']['viewCount']);
         $entity->content['gsb_feature_videos_fpp_video_viewcount'] = array(
-          '#markup' => t('<div class="video-viewcount">'.$data['items'][0]['statistics']['viewCount'].'<span>views</span></div>'),
+          '#markup' => t('<div class="video-viewcount">'.$viewCount.'<span>views</span></div>'),
         );
       }
     }
