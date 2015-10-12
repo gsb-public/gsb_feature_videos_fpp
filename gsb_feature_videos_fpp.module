@@ -47,13 +47,16 @@ function gsb_feature_videos_fpp_entity_view($entity, $type, $view_mode, $langcod
   if ($type == 'field_collection_item' && $entity->field_name == 'field_video') {
     $video_url = $entity->field_video_url['und'][0]['video_url'];
     $video_id = _gsb_feature_videos_fpp_get_video_id($video_url);
+    // Prefix field_title to be wrapped with a link
+    $entity->content['field_title']['#prefix'] = '<a href="' . $video_url . '" target="_blank">';
+    $entity->content['field_title']['#suffix'] = '</a>';
     // Render View View Count
     $data = _gsb_feature_videos_fpp_get_video_statistics($video_id);
     if ($data) {
       $data = drupal_json_decode($data);
       if (!empty($data['items'][0]['statistics']['viewCount'])) {
         $entity->content['gsb_feature_videos_fpp_video_viewcount'] = array(
-          '#markup' => t('<div class="""video-viewcount">'.$data['items'][0]['statistics']['viewCount'].'</div>'),
+          '#markup' => t('<div class="video-viewcount">'.$data['items'][0]['statistics']['viewCount'].'</div>'),
         );
       }
     }
