@@ -33,7 +33,7 @@ function gsb_feature_videos_fpp_field_default_field_instances() {
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_body',
     'label' => 'Video description',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
@@ -137,7 +137,7 @@ function gsb_feature_videos_fpp_field_default_field_instances() {
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_title',
     'label' => 'Video Title',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
