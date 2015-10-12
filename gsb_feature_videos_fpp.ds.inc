@@ -123,9 +123,9 @@ function gsb_feature_videos_fpp_ds_layout_settings_info() {
       'ds_content' => array(
         0 => 'group_wrapper_video',
         1 => 'field_video_url',
-        2 => 'gsb_feature_videos_fpp_video_duration',
-        3 => 'field_title',
-        4 => 'gsb_feature_videos_fpp_video_channel_title',
+        2 => 'field_title',
+        3 => 'gsb_feature_videos_fpp_video_channel_title',
+        4 => 'gsb_feature_videos_fpp_video_duration',
         5 => 'gsb_feature_videos_fpp_video_viewcount',
         6 => 'field_body',
       ),
@@ -133,9 +133,9 @@ function gsb_feature_videos_fpp_ds_layout_settings_info() {
     'fields' => array(
       'group_wrapper_video' => 'ds_content',
       'field_video_url' => 'ds_content',
-      'gsb_feature_videos_fpp_video_duration' => 'ds_content',
       'field_title' => 'ds_content',
       'gsb_feature_videos_fpp_video_channel_title' => 'ds_content',
+      'gsb_feature_videos_fpp_video_duration' => 'ds_content',
       'gsb_feature_videos_fpp_video_viewcount' => 'ds_content',
       'field_body' => 'ds_content',
     ),
