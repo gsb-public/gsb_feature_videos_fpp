@@ -34,7 +34,7 @@ function gsb_feature_videos_fpp_module_implements_alter(&$implementations, $hook
  * Implements hook_field_attach_form().
  */
 function gsb_feature_videos_fpp_field_attach_form($entity_type, $entity, &$form, &$form_state, $langcode) {
-  if ($entity->bundle == 'videos') {
+  if (!empty($entity->bundle) && $entity->bundle == 'videos') {
     if (!empty($form['redirect'])) {
       unset($form['redirect']);
     }

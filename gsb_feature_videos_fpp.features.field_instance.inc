@@ -235,7 +235,7 @@ function gsb_feature_videos_fpp_field_default_field_instances() {
           'image_style' => '270x158_video',
         ),
         'type' => 'gsb_field_formatter_video_lightbox',
-        'weight' => 1,
+        'weight' => 3,
       ),
     ),
     'ds_extras_field_template' => '',
