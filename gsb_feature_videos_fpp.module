@@ -162,6 +162,10 @@ function _gsb_feature_videos_fpp_get_video_id($video_url) {
   if (!empty($video_parts['query']['v'])) {
     $video_id = $video_parts['query']['v'];
   }
+  else if (strpos($video_parts['path'], 'youtu.be')) {
+    $pos = strpos($video_parts['path'], 'youtu.be');
+    $video_id = substr($video_parts['path'], $pos + strlen('youtu.be') + 1);
+  }
   return $video_id;
 }
 
