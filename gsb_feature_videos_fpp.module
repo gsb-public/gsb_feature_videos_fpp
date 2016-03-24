@@ -70,7 +70,13 @@ function gsb_feature_videos_fpp_field_extra_fields() {
  */
 function gsb_feature_videos_fpp_entity_view($entity, $type, $view_mode, $langcode) {
   if ($type == 'field_collection_item' && $entity->field_name == 'field_video') {
-    $video_url = $entity->field_video_url['und'][0]['video_url'];
+    $language = $entity->langcode();
+    if (empty($entity->field_video_url[$language][0]['video_url'])) {
+      unset($entity->content['field_title']);
+      unset($entity->content['field_body']);
+      return;
+    }
+    $video_url = $entity->field_video_url[$language][0]['video_url'];
     $video_id = _gsb_feature_videos_fpp_get_video_id($video_url);
     // Prefix field_title to be wrapped with a link
     $entity->content['field_title']['#prefix'] = '<a href="' . $video_url . '" target="_blank">';
