@@ -10,7 +10,7 @@
 function gsb_feature_videos_fpp_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'fieldable_panels_pane-videos-field_link_single'
+  // Exported field_instance: 'fieldable_panels_pane-videos-field_link_single'.
   $field_instances['fieldable_panels_pane-videos-field_link_single'] = array(
     'bundle' => 'videos',
     'custom_add_another' => '',
@@ -73,7 +73,7 @@ function gsb_feature_videos_fpp_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-videos-field_video'
+  // Exported field_instance: 'fieldable_panels_pane-videos-field_video'.
   $field_instances['fieldable_panels_pane-videos-field_video'] = array(
     'bundle' => 'videos',
     'custom_add_another' => '',
